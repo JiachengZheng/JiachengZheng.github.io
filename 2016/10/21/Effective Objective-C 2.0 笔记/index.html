@@ -84,15 +84,34 @@
 
 
 
-<meta name="description" content="iOS Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="郑嘉成's Tech Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="第一章1. Objective-C 使用的是消息结构而非函数调用，其区别在于：
+消息结构的语言，其运行时所应执行的代码由运行环境决定，编译完并不知道应该执行哪个方法，即运行时绑定
+函数调用的语言，由编译器决定，也就是编译完就知道应该执行那个方法
+
+2.内存1NSString *someString = @&quot;The String&quot;;
+对象所占内存总是分配在堆空间(heap space)，而绝不会分配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Objective-C 2.0 笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2016/10/21/Effective Objective-C 2.0 笔记/index.html">
 <meta property="og:site_name" content="郑嘉成's Tech Blog">
-<meta property="og:description" content="iOS Developer">
+<meta property="og:description" content="第一章1. Objective-C 使用的是消息结构而非函数调用，其区别在于：
+消息结构的语言，其运行时所应执行的代码由运行环境决定，编译完并不知道应该执行哪个方法，即运行时绑定
+函数调用的语言，由编译器决定，也就是编译完就知道应该执行那个方法
+
+2.内存1NSString *someString = @&quot;The String&quot;;
+对象所占内存总是分配在堆空间(heap space)，而绝不会分配">
+<meta property="og:image" content="http://yoursite.com/media/14770436566236/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-24%20%E4%B8%8B%E5%8D%885.11.39.png">
+<meta property="og:image" content="http://yoursite.com/media/14770436566236/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-24%20%E4%B8%8B%E5%8D%8810.15.08.png">
+<meta property="og:updated_time" content="2016-10-24T14:55:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郑嘉成's Tech Blog">
-<meta name="twitter:description" content="iOS Developer">
+<meta name="twitter:title" content="Effective Objective-C 2.0 笔记（一）">
+<meta name="twitter:description" content="第一章1. Objective-C 使用的是消息结构而非函数调用，其区别在于：
+消息结构的语言，其运行时所应执行的代码由运行环境决定，编译完并不知道应该执行哪个方法，即运行时绑定
+函数调用的语言，由编译器决定，也就是编译完就知道应该执行那个方法
+
+2.内存1NSString *someString = @&quot;The String&quot;;
+对象所占内存总是分配在堆空间(heap space)，而绝不会分配">
+<meta name="twitter:image" content="http://yoursite.com/media/14770436566236/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-24%20%E4%B8%8B%E5%8D%885.11.39.png">
 
 
 
@@ -113,10 +132,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/21/Effective Objective-C 2.0 笔记/"/>
 
 
-  <title> 郑嘉成's Tech Blog </title>
+  <title> Effective Objective-C 2.0 笔记（一） | 郑嘉成's Tech Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +156,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -202,9 +219,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -224,10 +241,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/10/21/Effective Objective-C 2.0 笔记/" itemprop="url">
-                  Effective Objective-C 2.0 笔记（一）
-                </a>
+                Effective Objective-C 2.0 笔记（一）
               
             
           </h1>
@@ -267,9 +281,7 @@
       
 
       
-        
-          
-            <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="1-Objective-C-使用的是消息结构而非函数调用，其区别在于："><a href="#1-Objective-C-使用的是消息结构而非函数调用，其区别在于：" class="headerlink" title="1. Objective-C 使用的是消息结构而非函数调用，其区别在于："></a>1. Objective-C 使用的是消息结构而非函数调用，其区别在于：</h2><ul>
+        <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="1-Objective-C-使用的是消息结构而非函数调用，其区别在于："><a href="#1-Objective-C-使用的是消息结构而非函数调用，其区别在于：" class="headerlink" title="1. Objective-C 使用的是消息结构而非函数调用，其区别在于："></a>1. Objective-C 使用的是消息结构而非函数调用，其区别在于：</h2><ul>
 <li>消息结构的语言，<strong>其运行时所应执行的代码由运行环境决定</strong>，编译完并不知道应该执行哪个方法，即运行时绑定</li>
 <li>函数调用的语言，<strong>由编译器决定</strong>，也就是编译完就知道应该执行那个方法</li>
 </ul>
@@ -383,16 +395,20 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">id</span> object = <span class="comment">/* ... */</span>;</div><div class="line"><span class="keyword">if</span> ([object <span class="keyword">class</span>] == [SomeClass <span class="keyword">class</span>])&#123;</div><div class="line">    <span class="comment">// 'object is an instance of SomeClass'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>虽然能这样比较，但不推荐。例如，某个对象可能会把其收到的所有选择子都转发到另一个对象。这样的对象叫做“代理(proxy)“，此种对象均以NSProxy 为根类。<br>如果在这种对象上调用class 方法，那么返回的是代理对象本身(此类是NSProxy 的子类)，而非接受代理的对象所属的类，然而改用<code>isKindOfClass:</code>就能把这条消息转给接受代理的对象。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -400,118 +416,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/10/21/起步/" rel="next" title="起步">
+                <i class="fa fa-chevron-left"></i> 起步
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/10/21/起步/" itemprop="url">
-                  起步
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T11:56:40+08:00" content="2016-10-21">
-              2016-10-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>这是使用<a href="http://zh.mweb.im" target="_blank" rel="external">MWeb</a> 写的第一篇文章。从事iOS 开发一年多了，一直也没有系统地整理所学的知识以及记录踩过的坑，在公司里一直也只是在做业务需求，没有涉及大多设计模式，底层框架的东西，感觉自己一直没有什么提升。所以决定开始写点什么，向大牛学习，可能文章质量不怎么高，但还是希望自己能从iOS 开发菜鸟稍微进阶一下。</p>
-<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ol>
-<li>买的<strong>Effective Objective-C 2.0</strong> 书，还没有看完，准备将书里的知识点总结一下</li>
-<li>总结一下几天前在<strong>趣直播</strong>平台上<a href="http://weibo.com/u/1364395395?is_hot=1" target="_blank" rel="external">我就叫Sunny怎么了</a> 的iOS 面试小灶直播内容</li>
-</ol>
-<h2 id="加油"><a href="#加油" class="headerlink" title="加油"></a>加油</h2><p>先把计划的这两件事做好，还是要静下心一步步来，慢慢积累吧。你还差的远呢！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -519,6 +449,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -538,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://i1.piimg.com/4851/e4462f56bd8f249b.jpg"
@@ -575,6 +518,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章"><span class="nav-number">1.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Objective-C-使用的是消息结构而非函数调用，其区别在于："><span class="nav-number">1.1.</span> <span class="nav-text">1. Objective-C 使用的是消息结构而非函数调用，其区别在于：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-内存"><span class="nav-number">1.2.</span> <span class="nav-text">2.内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用对象会比使用结构体性能差"><span class="nav-number">1.3.</span> <span class="nav-text">3.使用对象会比使用结构体性能差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-尽量使用-class-前向引用"><span class="nav-number">1.4.</span> <span class="nav-text">4.尽量使用@class 前向引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-多用字面量语法"><span class="nav-number">1.5.</span> <span class="nav-text">5.多用字面量语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-多用类型常量，少用-define预处理指令"><span class="nav-number">1.6.</span> <span class="nav-text">6.多用类型常量，少用#define预处理指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章"><span class="nav-number">2.</span> <span class="nav-text">第二章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-属性"><span class="nav-number">2.1.</span> <span class="nav-text">1.属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-等同性"><span class="nav-number">2.2.</span> <span class="nav-text">2.等同性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-类族模式"><span class="nav-number">2.3.</span> <span class="nav-text">3.类族模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-在既既有类中使用关联对象存放自定义数据-“关联对象（Associated-Object-）”"><span class="nav-number">2.4.</span> <span class="nav-text">4.在既既有类中使用关联对象存放自定义数据 “关联对象（Associated Object ）”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-理解objc-msgSend-的作用"><span class="nav-number">2.5.</span> <span class="nav-text">5.理解objc_msgSend 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-理解消息转发机制"><span class="nav-number">2.6.</span> <span class="nav-text">6.理解消息转发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态方法解析"><span class="nav-number">2.6.1.</span> <span class="nav-text">动态方法解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备援接收者"><span class="nav-number">2.6.2.</span> <span class="nav-text">备援接收者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的消息转发"><span class="nav-number">2.6.3.</span> <span class="nav-text">完整的消息转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调配技术-Method-swizzling"><span class="nav-number">2.6.4.</span> <span class="nav-text">方法调配技术 (Method swizzling)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-理解-“类对象”-的用意"><span class="nav-number">2.7.</span> <span class="nav-text">7.理解 “类对象” 的用意</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -671,6 +625,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
