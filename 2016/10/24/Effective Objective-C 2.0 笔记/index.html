@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS开发," />
 
 
 
@@ -92,7 +92,7 @@
 对象所占内存总是分配在堆空间(heap space)，而绝不会分配">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective Objective-C 2.0 笔记（一）">
-<meta property="og:url" content="http://yoursite.com/2016/10/21/Effective Objective-C 2.0 笔记/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/10/24/Effective Objective-C 2.0 笔记/index.html">
 <meta property="og:site_name" content="郑嘉成's Tech Blog">
 <meta property="og:description" content="第一章1. Objective-C 使用的是消息结构而非函数调用，其区别在于：
 消息结构的语言，其运行时所应执行的代码由运行环境决定，编译完并不知道应该执行哪个方法，即运行时绑定
@@ -102,7 +102,7 @@
 对象所占内存总是分配在堆空间(heap space)，而绝不会分配">
 <meta property="og:image" content="http://yoursite.com/media/14770436566236/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-24%20%E4%B8%8B%E5%8D%885.11.39.png">
 <meta property="og:image" content="http://yoursite.com/media/14770436566236/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-24%20%E4%B8%8B%E5%8D%8810.15.08.png">
-<meta property="og:updated_time" content="2016-10-24T14:55:26.000Z">
+<meta property="og:updated_time" content="2016-10-24T15:16:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Objective-C 2.0 笔记（一）">
 <meta name="twitter:description" content="第一章1. Objective-C 使用的是消息结构而非函数调用，其区别在于：
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/21/Effective Objective-C 2.0 笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/24/Effective Objective-C 2.0 笔记/"/>
 
 
   <title> Effective Objective-C 2.0 笔记（一） | 郑嘉成's Tech Blog </title>
@@ -253,11 +253,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T17:54:16+08:00" content="2016-10-21">
-              2016-10-21
+            <time itemprop="dateCreated" datetime="2016-10-24T21:25:38+08:00" content="2016-10-24">
+              2016-10-24
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -288,6 +307,7 @@
 <h2 id="2-内存"><a href="#2-内存" class="headerlink" title="2.内存"></a>2.内存</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *someString = <span class="string">@"The String"</span>;</div></pre></td></tr></table></figure>
 <p>对象所占内存总是分配在堆空间(heap space)，而绝不会分配在栈(stack)上。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *anotherString = someString;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>两个变量都指向此实例，这说明当前<code>栈帧(stack frame)</code>里分配了两块内存，每块内存的大小都能容下一枚指针（在32位架构的计算机上是4字节，64位是8字节），这两块内存里的值都一样，就是NSString实例的内存地址。</p>
 <p>分配在<code>堆</code>中的内存必须<strong>直接管理</strong>，分配在<code>栈</code>上的用于保存变量的内存则会在其<strong>栈帧弹出时自动清理</strong></p>
 <h2 id="3-使用对象会比使用结构体性能差"><a href="#3-使用对象会比使用结构体性能差" class="headerlink" title="3.使用对象会比使用结构体性能差"></a>3.使用对象会比使用结构体性能差</h2><p>对象还需要额外的开销，例如分配及释放堆内存等</p>
@@ -414,6 +434,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -499,7 +525,21 @@
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
