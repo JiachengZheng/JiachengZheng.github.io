@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="生活," />
+  <meta name="keywords" content="iOS开发," />
 
 
 
@@ -84,22 +84,106 @@
 
 
 
-<meta name="description" content="起步这是使用MWeb 写的第一篇文章。从事iOS 开发一年多了，一直也没有系统地整理所学的知识以及记录踩过的坑，在公司里一直也只是在做业务需求，没有涉及大多设计模式，底层框架的东西，感觉自己一直没有什么提升。所以决定开始写点什么，向大牛学习，可能文章质量不怎么高，但还是希望自己能从iOS 开发菜鸟稍微进阶一下。
-计划
-买的Effective Objective-C 2.0 书，还没有看完，准备将书">
+<meta name="description" content="GCD1.块的内部结构块本身也是对象，在存放块对象的内存区域中，首个变量是指向Class 对象的指针，叫做isa ，其余内存里含有块对象正常运转所需的各种信息。
+
+
+
+void*
+isa
+
+
+
+
+int
+flags
+
+
+int
+reserved
+
+
+void ()(void ,…)
+invoke
+
+
+struct *
+descriptor
+
+
+捕获到的变量
+
+
+
+其中最重要的就是invoke 变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="起步">
-<meta property="og:url" content="http://yoursite.com/2016/10/21/起步/index.html">
+<meta property="og:title" content="Effective Objective-C 2.0 笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/Effective Objective-C 2.0 笔记-1/index.html">
 <meta property="og:site_name" content="郑嘉成's Tech Blog">
-<meta property="og:description" content="起步这是使用MWeb 写的第一篇文章。从事iOS 开发一年多了，一直也没有系统地整理所学的知识以及记录踩过的坑，在公司里一直也只是在做业务需求，没有涉及大多设计模式，底层框架的东西，感觉自己一直没有什么提升。所以决定开始写点什么，向大牛学习，可能文章质量不怎么高，但还是希望自己能从iOS 开发菜鸟稍微进阶一下。
-计划
-买的Effective Objective-C 2.0 书，还没有看完，准备将书">
-<meta property="og:updated_time" content="2016-10-24T15:17:39.000Z">
+<meta property="og:description" content="GCD1.块的内部结构块本身也是对象，在存放块对象的内存区域中，首个变量是指向Class 对象的指针，叫做isa ，其余内存里含有块对象正常运转所需的各种信息。
+
+
+
+void*
+isa
+
+
+
+
+int
+flags
+
+
+int
+reserved
+
+
+void ()(void ,…)
+invoke
+
+
+struct *
+descriptor
+
+
+捕获到的变量
+
+
+
+其中最重要的就是invoke 变量">
+<meta property="og:updated_time" content="2016-12-08T08:34:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="起步">
-<meta name="twitter:description" content="起步这是使用MWeb 写的第一篇文章。从事iOS 开发一年多了，一直也没有系统地整理所学的知识以及记录踩过的坑，在公司里一直也只是在做业务需求，没有涉及大多设计模式，底层框架的东西，感觉自己一直没有什么提升。所以决定开始写点什么，向大牛学习，可能文章质量不怎么高，但还是希望自己能从iOS 开发菜鸟稍微进阶一下。
-计划
-买的Effective Objective-C 2.0 书，还没有看完，准备将书">
+<meta name="twitter:title" content="Effective Objective-C 2.0 笔记（二）">
+<meta name="twitter:description" content="GCD1.块的内部结构块本身也是对象，在存放块对象的内存区域中，首个变量是指向Class 对象的指针，叫做isa ，其余内存里含有块对象正常运转所需的各种信息。
+
+
+
+void*
+isa
+
+
+
+
+int
+flags
+
+
+int
+reserved
+
+
+void ()(void ,…)
+invoke
+
+
+struct *
+descriptor
+
+
+捕获到的变量
+
+
+
+其中最重要的就是invoke 变量">
 
 
 
@@ -120,10 +204,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/21/起步/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/08/Effective Objective-C 2.0 笔记-1/"/>
 
 
-  <title> 起步 | 郑嘉成's Tech Blog </title>
+  <title> Effective Objective-C 2.0 笔记（二） | 郑嘉成's Tech Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -229,7 +313,7 @@
             
             
               
-                起步
+                Effective Objective-C 2.0 笔记（二）
               
             
           </h1>
@@ -241,8 +325,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T15:21:38+08:00" content="2016-10-21">
-              2016-10-21
+            <time itemprop="dateCreated" datetime="2016-12-08T16:25:38+08:00" content="2016-12-08">
+              2016-12-08
             </time>
           </span>
 
@@ -255,8 +339,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -288,12 +372,67 @@
       
 
       
-        <h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>这是使用<a href="http://zh.mweb.im" target="_blank" rel="external">MWeb</a> 写的第一篇文章。从事iOS 开发一年多了，一直也没有系统地整理所学的知识以及记录踩过的坑，在公司里一直也只是在做业务需求，没有涉及大多设计模式，底层框架的东西，感觉自己一直没有什么提升。所以决定开始写点什么，向大牛学习，可能文章质量不怎么高，但还是希望自己能从iOS 开发菜鸟稍微进阶一下。</p>
-<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ol>
-<li>买的<strong>Effective Objective-C 2.0</strong> 书，还没有看完，准备将书里的知识点总结一下</li>
-<li>总结一下几天前在<strong>趣直播</strong>平台上<a href="http://weibo.com/u/1364395395?is_hot=1" target="_blank" rel="external">我就叫Sunny怎么了</a> 的iOS 面试小灶直播内容<a id="more"></a>
-<h2 id="加油"><a href="#加油" class="headerlink" title="加油"></a>加油</h2>先把计划的这两件事做好，还是要静下心一步步来，慢慢积累吧。你还差的远呢！</li>
-</ol>
+        <h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="1-块的内部结构"><a href="#1-块的内部结构" class="headerlink" title="1.块的内部结构"></a>1.块的内部结构</h2><p>块本身也是对象，在存放块对象的内存区域中，首个变量是指向Class 对象的指针，叫做isa ，其余内存里含有块对象正常运转所需的各种信息。</p>
+<table>
+<thead>
+<tr>
+<th>void*</th>
+<th>isa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>flags</td>
+</tr>
+<tr>
+<td>int</td>
+<td>reserved</td>
+</tr>
+<tr>
+<td>void (<em>)(void </em>,…)</td>
+<td>invoke</td>
+</tr>
+<tr>
+<td>struct *</td>
+<td>descriptor</td>
+</tr>
+<tr>
+<td>捕获到的变量</td>
+</tr>
+</tbody>
+</table>
+<p>其中最重要的就是invoke 变量，这是个函数指针，指向块的实现代码。函数原型至少要接受一个void* 型的参数，此参数代表块。<br>descriptor 变量是指向结构体的指针，其中声明了块对象的总体的大小，还声明了copy 与dispose 这两个辅助函数所对应的函数指针。<br>descriptor 对应结构如下：</p>
+<table>
+<thead>
+<tr>
+<th>unsigned long int</th>
+<th>reserved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unsigned long int</td>
+<td>size</td>
+</tr>
+<tr>
+<td>void (<em>)(void </em> , void *)</td>
+<td>copy</td>
+</tr>
+<tr>
+<td>void (<em>)(void </em> , void *)</td>
+<td>dispose</td>
+</tr>
+</tbody>
+</table>
+<p>块还会把它所捕获的所有变量都拷贝一份，这些拷贝都放在descriptor 变量后面，捕获了多少个变量，就要占据多少内存空间。注意，拷贝的并不是对象本身，而是指向这些对象的指针变量。invoke 函数之所以把块当第一个参数传递进来，原因在于，执行块时，要从内存中把这些捕获的变量读出来。<br><a id="more"></a></p>
+<h2 id="2-全局块、栈块及堆块"><a href="#2-全局块、栈块及堆块" class="headerlink" title="2.全局块、栈块及堆块"></a>2.全局块、栈块及堆块</h2><p>定义块的时候，其所占内存区域是分配在占栈中，块只在定义它的那个范围内有效。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> (^Block)();</div><div class="line"><span class="keyword">if</span> (<span class="comment">/* some condition*/</span>)&#123;</div><div class="line">    block = ^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Block A"</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    block = ^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Block B"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">block();</div></pre></td></tr></table></figure>
+<p>这段代码就有危险，定义在if 里面的Block 都分配在栈内存中。在离开了if 语句后，编译器有可能把分配在块的内存覆写掉，可能导致crash。<br>为解决此问题，可以给块对象发送copy 消息来拷贝，这样可以把块从栈复制到堆上，块就成了带引用计数的对象了。后续的拷贝操作都不会真的执行复制，只是递增块对象的引用计数。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> (^Block)();</div><div class="line"><span class="keyword">if</span> (<span class="comment">/* some condition*/</span>)&#123;</div><div class="line">    block = [^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Block A"</span>);</div><div class="line">    &#125; <span class="keyword">copy</span>];</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    block = [^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Block B"</span>);</div><div class="line">    &#125; <span class="keyword">copy</span>]</div><div class="line">&#125;</div><div class="line">block();</div></pre></td></tr></table></figure>
+<h2 id="3-全局块"><a href="#3-全局块" class="headerlink" title="3.全局块"></a>3.全局块</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> (^Block)() = ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"This is a block"</span>);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于在编译期能确定块所需的全部信息，所以可以把它做成全局块。这是种优化技术。</p>
+<p>未完待续…</p>
 
       
     </div>
@@ -316,7 +455,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生活/" rel="tag">#生活</a>
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
           
         </div>
       
@@ -325,13 +464,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/10/24/Effective Objective-C 2.0 笔记/" rel="next" title="Effective Objective-C 2.0 笔记（一）">
+                <i class="fa fa-chevron-left"></i> Effective Objective-C 2.0 笔记（一）
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/24/Effective Objective-C 2.0 笔记/" rel="prev" title="Effective Objective-C 2.0 笔记（一）">
-                Effective Objective-C 2.0 笔记（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,7 +584,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起步"><span class="nav-number">1.</span> <span class="nav-text">起步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计划"><span class="nav-number">2.</span> <span class="nav-text">计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加油"><span class="nav-number">3.</span> <span class="nav-text">加油</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">1.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-块的内部结构"><span class="nav-number">1.1.</span> <span class="nav-text">1.块的内部结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-全局块、栈块及堆块"><span class="nav-number">1.2.</span> <span class="nav-text">2.全局块、栈块及堆块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-全局块"><span class="nav-number">1.3.</span> <span class="nav-text">3.全局块</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
