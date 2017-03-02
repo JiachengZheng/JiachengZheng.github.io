@@ -1,0 +1,625 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="这两天趁着在公司里继续做着不爱做的需求的空隙，将很多App 常用的滑动视图控制器按照自己的想法造了个轮子，在这记录下整个流程。
+
+Demo 地址GitHub  
+
+演示：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一个轮子——滑动视图导航控制器">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/第一个轮子——滑动视图导航控制器/index.html">
+<meta property="og:site_name" content="郑嘉成's Tech Blog">
+<meta property="og:description" content="这两天趁着在公司里继续做着不爱做的需求的空隙，将很多App 常用的滑动视图控制器按照自己的想法造了个轮子，在这记录下整个流程。
+
+Demo 地址GitHub  
+
+演示：">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3303775-cfc05e5e86193cbf.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3303775-c36ef8dd4a64f9bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-03-02T02:42:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一个轮子——滑动视图导航控制器">
+<meta name="twitter:description" content="这两天趁着在公司里继续做着不爱做的需求的空隙，将很多App 常用的滑动视图控制器按照自己的想法造了个轮子，在这记录下整个流程。
+
+Demo 地址GitHub  
+
+演示：">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3303775-cfc05e5e86193cbf.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/28/第一个轮子——滑动视图导航控制器/"/>
+
+
+  <title> 第一个轮子——滑动视图导航控制器 | 郑嘉成's Tech Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">郑嘉成's Tech Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第一个轮子——滑动视图导航控制器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-28T09:25:38+08:00" content="2017-02-28">
+              2017-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这两天趁着在公司里继续做着不爱做的需求的空隙，将很多App 常用的滑动视图控制器按照自己的想法造了个轮子，在这记录下整个流程。</p>
+<blockquote>
+<p>Demo 地址<br><a href="https://github.com/JiachengZheng/JCPageController" target="_blank" rel="external">GitHub</a>  </p>
+</blockquote>
+<p>演示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3303775-cfc05e5e86193cbf.gif?imageMogr2/auto-orient/strip" alt="demo.gif"></p>
+<a id="more"></a>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="1-CocoaPods"><a href="#1-CocoaPods" class="headerlink" title="1.CocoaPods"></a>1.CocoaPods</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;JCPageController&apos;</div></pre></td></tr></table></figure>
+<h2 id="2-Demo-使用"><a href="#2-Demo-使用" class="headerlink" title="2.Demo 使用"></a>2.Demo 使用</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建pageController</span></div><div class="line">- (JCPageContoller *)pageController&#123;</div><div class="line">    <span class="keyword">if</span> (!_pageController) &#123;</div><div class="line">        _pageController = [[JCPageContoller alloc]init];</div><div class="line">        _pageController.delegate = <span class="keyword">self</span>;</div><div class="line">        _pageController.dataSource = <span class="keyword">self</span>;</div><div class="line">        [<span class="keyword">self</span> addChildViewController:_pageController];</div><div class="line">        [<span class="keyword">self</span>.view addSubview:_pageController.view];</div><div class="line">        _pageController.lineAinimationType = <span class="keyword">self</span>.lineAinimationType;</div><div class="line">        _pageController.scaleSelectedBar = <span class="keyword">self</span>.scaleSelectedBar;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _pageController;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSInteger</span>)numberOfControllersInPageController&#123;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)reuseIdentifierForControllerAtIndex:(<span class="built_in">NSInteger</span>)index;&#123;</div><div class="line">    <span class="keyword">return</span> identifier;<span class="comment">//用于controller重用</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">UIViewController</span> *)pageContoller:(JCPageContoller *)pageContoller controllerAtIndex:(<span class="built_in">NSInteger</span>)index&#123;</div><div class="line">    <span class="built_in">UIViewController</span> *controller = [pageContoller dequeueReusableControllerWithReuseIdentifier:identifier atIndex:index];<span class="comment">//获取重用的controller</span></div><div class="line">    <span class="keyword">if</span> (!controller) &#123;</div><div class="line">        <span class="comment">//controller init</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> controller;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">CGFloat</span>)pageContoller:(JCPageContoller *)pageContoller widthForCellAtIndex:(<span class="built_in">NSInteger</span> )index&#123;</div><div class="line">    <span class="keyword">return</span> width;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)pageContoller:(JCPageContoller *)pageContoller titleForCellAtIndex:(<span class="built_in">NSInteger</span>)index&#123;</div><div class="line">    <span class="keyword">return</span> text;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 更多使用方法请看Demo</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h2><p>主要分两个部分：</p>
+<ul>
+<li>上方的TabBar（UICollectionView 构成）</li>
+<li>下方的容器ContentView（UIScrollView 构成）</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) JCPageSlideBar *slideBar;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIScrollView</span> *contentView;</div></pre></td></tr></table></figure>
+<p>目录结构</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3303775-c36ef8dd4a64f9bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-02-26 22.36.00.png"></p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
+<li>通过数据源获取子Controller 的数量，以及相应索引上tabBar 的宽度和title。</li>
+<li>通过数据源获取相应索引上的Controller，先判断如果有相同identifier 的可复用Controller，若有，则返回，否则创建该Controller，存入到缓存中。</li>
+<li>当手势滑动ContentView 或点击TabBar 来切换页面时，处理ContentView 与TabBar 之间的协同问题。</li>
+</ol>
+<h2 id="主要逻辑"><a href="#主要逻辑" class="headerlink" title="主要逻辑"></a>主要逻辑</h2><p>首先是重用Controller，这个对提高性能很重要，我是将Controller 都存到controllersMap 这个字典里，用 @“index_identifier” 来当做key，同一个identifier 的Controller 最多创建两个。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableDictionary</span> *controllersMap; <span class="comment">//用于保存controllers 用 @“index_identifier” 来当做key   value为controller</span></div><div class="line"></div><div class="line">- (<span class="built_in">UIViewController</span> *)dequeueReusableControllerWithReuseIdentifier:(<span class="built_in">NSString</span> *)identifier atIndex:(<span class="built_in">NSInteger</span>)index&#123;</div><div class="line">    <span class="keyword">if</span> (!identifier) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">NSInteger</span> count = [<span class="keyword">self</span>.dataSource numberOfControllersInPageController];</div><div class="line">    <span class="keyword">if</span> (index &gt;= count || index &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">UIViewController</span> *controller = <span class="literal">nil</span>;</div><div class="line">    <span class="built_in">NSString</span> *findKey = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">NSString</span> *key <span class="keyword">in</span> <span class="keyword">self</span>.controllersMap) &#123;</div><div class="line">        <span class="built_in">NSArray</span> *components = [key componentsSeparatedByString:<span class="string">@"_"</span>];</div><div class="line">        <span class="built_in">NSString</span> *indexStr = components.firstObject;</div><div class="line">        <span class="built_in">NSString</span> *identifierStr = components.lastObject;</div><div class="line">        <span class="built_in">NSInteger</span> gap = labs(indexStr.integerValue - index);</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">self</span>.didSelectBarToChangePage) &#123;</div><div class="line">            <span class="comment">//点击tabbar切换页面</span></div><div class="line">            <span class="keyword">if</span> ([identifier isEqualToString:identifierStr]) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">self</span>.currentIndex != indexStr.integerValue) &#123;</div><div class="line">                    controller = <span class="keyword">self</span>.controllersMap[key];</div><div class="line">                    findKey = key;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="comment">//手势滑动切换页面</span></div><div class="line">            <span class="keyword">if</span> ([identifier isEqualToString:identifierStr] &amp;&amp; gap &gt; <span class="number">1</span>) &#123;</div><div class="line">                controller = <span class="keyword">self</span>.controllersMap[key];</div><div class="line">                findKey = key;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (findKey) &#123;</div><div class="line">        <span class="keyword">if</span> ([controller respondsToSelector:<span class="keyword">@selector</span>(prepareForReuse)]) &#123;</div><div class="line">            [controller performSelector:<span class="keyword">@selector</span>(prepareForReuse)];</div><div class="line">        &#125;</div><div class="line">        [<span class="keyword">self</span>.controllersMap removeObjectForKey:findKey];</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span> ([<span class="keyword">self</span> getControllerFromMap:index]) &#123;</div><div class="line">            controller = [<span class="keyword">self</span> getControllerFromMap:index];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> controller;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了性能考虑，只有当每次滑动即将出现某个index 对应的Controller 时，才去创建该Controller，将其add 到ContentView 相应的ContentOffset 上的。</p>
+<p>手势滑动切换页面时，主要逻辑在<code>scrollViewDidScroll</code>这个方法里，先判断滑动方向，然后配置相应的Controller。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)scrollViewDidScroll:(<span class="built_in">UIScrollView</span> *)scrollView&#123;</div><div class="line">    </div><div class="line">    ...</div><div class="line">    </div><div class="line">    <span class="built_in">BOOL</span> scrollToRight = <span class="literal">YES</span>;</div><div class="line">    <span class="keyword">if</span> (contentOffsetX - <span class="keyword">self</span>.lastOffsetX &gt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (contentOffsetX &lt;= curControllerOriginX) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        nextPage = page &lt; totalCount - <span class="number">1</span> ? page + <span class="number">1</span> : totalCount - <span class="number">1</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span> (contentOffsetX &gt;= curControllerOriginX) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        scrollToRight = <span class="literal">NO</span>;</div><div class="line">        page = page &lt; totalCount - <span class="number">1</span> ? page+<span class="number">1</span> : totalCount<span class="number">-1</span>;</div><div class="line">        nextPage = page &gt; <span class="number">0</span> ? page - <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">self</span>.lastOffsetX = contentOffsetX;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.currentIndex != page) &#123;</div><div class="line">        <span class="comment">//配置当前显示的controller</span></div><div class="line">        <span class="keyword">self</span>.currentIndex = page;</div><div class="line">        <span class="keyword">self</span>.currentController = <span class="keyword">self</span>.nextController;</div><div class="line">        [<span class="keyword">self</span>.slideBar selectTabAtIndex:<span class="keyword">self</span>.currentIndex];</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//配置下个将要显示的controller</span></div><div class="line">    [<span class="keyword">self</span> checkNeedConfigNextPage:scrollToRight nextPage:nextPage];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)checkNeedConfigNextPage:(<span class="built_in">BOOL</span>)scrollToRight nextPage:(<span class="built_in">NSInteger</span>)nextPage&#123;</div><div class="line">    <span class="built_in">CGFloat</span> contentOffsetX = <span class="keyword">self</span>.contentView.contentOffset.x;</div><div class="line">    <span class="built_in">BOOL</span> needConfigNextPage = <span class="literal">NO</span>;</div><div class="line">    <span class="keyword">if</span> (scrollToRight) &#123;</div><div class="line">        <span class="keyword">if</span> (contentOffsetX &gt; <span class="keyword">self</span>.currentIndex * <span class="keyword">self</span>.contentView.frame.size.width) &#123;</div><div class="line">            needConfigNextPage = <span class="literal">YES</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span> (contentOffsetX &lt; <span class="keyword">self</span>.currentIndex * <span class="keyword">self</span>.contentView.frame.size.width) &#123;</div><div class="line">            needConfigNextPage = <span class="literal">YES</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (needConfigNextPage &amp;&amp; <span class="keyword">self</span>.nextIndex != nextPage) &#123;</div><div class="line">        <span class="comment">//配置下一个即将显示的controller</span></div><div class="line">        [<span class="keyword">self</span> willDraggingToNextController:nextPage];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当点击tabBar 切换页面时，主要实现JCPageSlideBarDelegate 代理方法，将nextVCL 放在当前Controller 相邻位置上，待滚动结束后在恢复真正位置。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)pageSlideBar:(JCPageSlideBar *)pageSlideBar didSelectBarAtIndex:(<span class="built_in">NSInteger</span>)index&#123;</div><div class="line">    ...</div><div class="line">    <span class="keyword">self</span>.selectBarIndex = index;</div><div class="line">    <span class="built_in">NSInteger</span> realIndex = <span class="keyword">self</span>.currentIndex &lt; index ?  <span class="keyword">self</span>.currentIndex + <span class="number">1</span> : <span class="keyword">self</span>.currentIndex - <span class="number">1</span>;</div><div class="line">    <span class="built_in">UIViewController</span> *nextVCL = [<span class="keyword">self</span> willDraggingToNextController:index];</div><div class="line">    <span class="keyword">if</span> (nextVCL) &#123;</div><div class="line">        <span class="comment">//将nextVCL 放在相邻位置上，待滚动结束后在恢复真正位置</span></div><div class="line">        <span class="keyword">self</span>.contentView.userInteractionEnabled = <span class="literal">NO</span>;<span class="comment">//滚动期间 不允许用户手势操作</span></div><div class="line">        <span class="keyword">self</span>.currentController = nextVCL;</div><div class="line">        <span class="built_in">CGRect</span> rect = nextVCL.view.frame;</div><div class="line">        rect.origin.x = realIndex * <span class="keyword">self</span>.contentView.frame.size.width;</div><div class="line">        nextVCL.view.frame = rect;</div><div class="line">    &#125;</div><div class="line">    [<span class="keyword">self</span>.contentView setContentOffset:<span class="built_in">CGPointMake</span>(realIndex * <span class="keyword">self</span>.contentView.frame.size.width,<span class="number">0</span>) animated:<span class="literal">YES</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认提供了四种line 的切换动画</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, JCSlideBarLineAnimationType) &#123;</div><div class="line">    JCSlideBarLineAnimationFixedWidth = <span class="number">0</span>,       <span class="comment">//固定宽度</span></div><div class="line">    JCSlideBarLineAnimationDynamicWidth = <span class="number">1</span>,     <span class="comment">//动态宽度，与标题文字等宽</span></div><div class="line">    JCSlideBarLineAnimationStretchFixedWidth = <span class="number">2</span>,          <span class="comment">//拉伸效果 固定宽度</span></div><div class="line">    JCSlideBarLineAnimationStretchDynamicWidth = <span class="number">3</span>,          <span class="comment">//拉伸效果 动态宽度，与标题文字等宽</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>其中拉伸效果需要计算当前切换页面滑动的progress ，以此来计算line 的origin.x 以及width。</p>
+<p>这里也提供了tabBar 选中放大效果以及title 颜色渐变，,主要使用的是<code>CGAffineTransformMakeScale</code>， </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">BOOL</span> scaleSelectedBar;<span class="comment">//是否有选中放大效果</span></div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)scaleTitleFromIndex:(<span class="built_in">NSInteger</span>)fromIndex toIndex:(<span class="built_in">NSInteger</span>)toIndex progress:(<span class="built_in">CGFloat</span>)progress&#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">self</span>.scaleSelectedBar) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">CGFloat</span> scale = kSlideBarCellScaleSize;</div><div class="line">    <span class="built_in">CGFloat</span> currentTransform = (scale - <span class="number">1</span>) * progress;</div><div class="line">    <span class="built_in">UICollectionViewCell</span> *fromCell = [<span class="keyword">self</span>.collectionView cellForItemAtIndexPath:[<span class="built_in">NSIndexPath</span> indexPathForItem:fromIndex inSection:<span class="number">0</span>]];</div><div class="line">    <span class="built_in">UICollectionViewCell</span> *toCell = [<span class="keyword">self</span>.collectionView cellForItemAtIndexPath:[<span class="built_in">NSIndexPath</span> indexPathForItem:toIndex inSection:<span class="number">0</span>]];</div><div class="line">    fromCell.transform = <span class="built_in">CGAffineTransformMakeScale</span>(scale - currentTransform , scale - currentTransform);</div><div class="line">    toCell.transform = <span class="built_in">CGAffineTransformMakeScale</span>(<span class="number">1</span> + currentTransform, <span class="number">1</span> + currentTransform);</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.lineAinimationType &lt; JCSlideBarLineAnimationStretchFixedWidth) &#123;</div><div class="line">        <span class="comment">//不是拉伸效果就不用变颜色了</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">CGFloat</span> narR,narG,narB,narA;</div><div class="line">    [kTitleNormalColor getRed:&amp;narR green:&amp;narG blue:&amp;narB alpha:&amp;narA];</div><div class="line">    <span class="built_in">CGFloat</span> selR,selG,selB,selA;</div><div class="line">    [kTitleSelectedColor getRed:&amp;selR green:&amp;selG blue:&amp;selB alpha:&amp;selA];</div><div class="line">    <span class="built_in">CGFloat</span> detalR = narR - selR ,detalG = narG - selG,detalB = narB - selB,detalA = narA - selA;</div><div class="line">    </div><div class="line">    <span class="built_in">UILabel</span> *fromTitle = [fromCell viewWithTag:kSlideBarCellTitleTag];</div><div class="line">    <span class="built_in">UILabel</span> *toTitle = [toCell viewWithTag:kSlideBarCellTitleTag];</div><div class="line">    fromTitle.textColor = [<span class="built_in">UIColor</span> colorWithRed:selR + detalR * progress green:selG+detalG * progress blue:selB+detalB * progress alpha:selA+detalA * progress];</div><div class="line">    toTitle.textColor = [<span class="built_in">UIColor</span> colorWithRed:narR-detalR * progress green:narG-detalG * progress blue:narB-detalB * progress alpha:narA-detalA * progress];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由于自身的能力以及是第一版，尚且存在很多不足之处，例如不能自由的定制化，代码注释不够，一些方法逻辑躲起来不够顺畅，总的来说还是可以满足基本需求。日后有时间将会继续完善。欢迎大家指出问题，一起交流。</p>
+<blockquote>
+<p>Demo 地址<br><a href="https://github.com/JiachengZheng/JCPageController" target="_blank" rel="external">GitHub</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/20/轮播图实现 以及发布到Cocoapod/" rel="next" title="轮播图不同实现方法 以及 发布到Cocoapod">
+                <i class="fa fa-chevron-left"></i> 轮播图不同实现方法 以及 发布到Cocoapod
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://i1.piimg.com/4851/e4462f56bd8f249b.jpg"
+               alt="郑嘉成" />
+          <p class="site-author-name" itemprop="name">郑嘉成</p>
+          <p class="site-description motion-element" itemprop="description">iOS Developer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CocoaPods"><span class="nav-number">1.1.</span> <span class="nav-text">1.CocoaPods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Demo-使用"><span class="nav-number">1.2.</span> <span class="nav-text">2.Demo 使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构成"><span class="nav-number">2.1.</span> <span class="nav-text">构成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要逻辑"><span class="nav-number">2.3.</span> <span class="nav-text">主要逻辑</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郑嘉成</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

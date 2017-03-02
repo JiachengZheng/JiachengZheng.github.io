@@ -1,0 +1,624 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Demo地址github
+
+周末闲着无聊把使用两个UIImageView 以及使用一个UIImageView 来实现轮播图分别写了一下，顺便试了下发布到Cocoapod，总体来说还是很简单的，记录下流程。
+两个UIImageView原理和使用三个基本一样，没什么可以说的
+使用的demo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轮播图不同实现方法 以及 发布到Cocoapod">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/轮播图实现 以及发布到Cocoapod/index.html">
+<meta property="og:site_name" content="郑嘉成's Tech Blog">
+<meta property="og:description" content="Demo地址github
+
+周末闲着无聊把使用两个UIImageView 以及使用一个UIImageView 来实现轮播图分别写了一下，顺便试了下发布到Cocoapod，总体来说还是很简单的，记录下流程。
+两个UIImageView原理和使用三个基本一样，没什么可以说的
+使用的demo">
+<meta property="og:updated_time" content="2017-03-02T02:40:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="轮播图不同实现方法 以及 发布到Cocoapod">
+<meta name="twitter:description" content="Demo地址github
+
+周末闲着无聊把使用两个UIImageView 以及使用一个UIImageView 来实现轮播图分别写了一下，顺便试了下发布到Cocoapod，总体来说还是很简单的，记录下流程。
+两个UIImageView原理和使用三个基本一样，没什么可以说的
+使用的demo">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/20/轮播图实现 以及发布到Cocoapod/"/>
+
+
+  <title> 轮播图不同实现方法 以及 发布到Cocoapod | 郑嘉成's Tech Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">郑嘉成's Tech Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                轮播图不同实现方法 以及 发布到Cocoapod
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-20T09:25:38+08:00" content="2017-02-20">
+              2017-02-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Demo地址<br><a href="https://github.com/JiachengZheng/JCCarouselView" target="_blank" rel="external">github</a></p>
+</blockquote>
+<p>周末闲着无聊把使用两个UIImageView 以及使用一个UIImageView 来实现轮播图分别写了一下，顺便试了下发布到Cocoapod，总体来说还是很简单的，记录下流程。</p>
+<h1 id="两个UIImageView"><a href="#两个UIImageView" class="headerlink" title="两个UIImageView"></a>两个UIImageView</h1><p>原理和使用三个基本一样，没什么可以说的</p>
+<p>使用的demo<br><a id="more"></a><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)demo&#123;</div><div class="line">    JCCarouselView *bannerView = [[JCCarouselView alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">64</span>, <span class="keyword">self</span>.view.frame.size.width, <span class="number">220</span>)];</div><div class="line">    [<span class="keyword">self</span>.view addSubview:bannerView];</div><div class="line">    bannerView.imageUrlArr = <span class="keyword">self</span>.imageUrlArr;</div><div class="line">    </div><div class="line">    bannerView.placeholderImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"placeholder"</span>];</div><div class="line">    </div><div class="line">    <span class="comment">//设置pagecontrol 图片</span></div><div class="line">    bannerView.curPageControlImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"Group"</span>];</div><div class="line">    bannerView.pageControlImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"Group1"</span>];</div><div class="line">    </div><div class="line">    <span class="comment">//设置pagecontrol 颜色</span></div><div class="line">    bannerView.pageControlColor = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">    bannerView.curPageControlColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">    </div><div class="line">    bannerView.timeInterval = <span class="number">4</span>;</div><div class="line">    bannerView.delegate = <span class="keyword">self</span>;</div><div class="line">    </div><div class="line">    bannerView.clickBlock = ^(<span class="built_in">NSInteger</span> index)&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"点击%ld张图片"</span>,index);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)carouselView:(JCCarouselView *)carouselView didSelectedAtIndex:(<span class="built_in">NSInteger</span>)index&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"点击%ld张图片"</span>,index);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="一个UIImageView"><a href="#一个UIImageView" class="headerlink" title="一个UIImageView"></a>一个UIImageView</h1><p>主要原理是使用CATransition 这个类，往图片上添加转场效果。</p>
+<p>先在图片上添加左滑以及右滑的手势</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIImageView</span> *)imageView&#123;</div><div class="line">    <span class="keyword">if</span> (!_imageView) &#123;</div><div class="line">        _imageView = [[<span class="built_in">UIImageView</span> alloc]initWithFrame:<span class="keyword">self</span>.bounds];</div><div class="line">        [<span class="keyword">self</span> addSubview:_imageView];</div><div class="line">        [_imageView setContentMode:<span class="built_in">UIViewContentModeScaleAspectFill</span>];</div><div class="line">        _imageView.clipsToBounds = <span class="literal">YES</span>;</div><div class="line">        _imageView.userInteractionEnabled = <span class="literal">YES</span>;</div><div class="line">        </div><div class="line">        <span class="built_in">UISwipeGestureRecognizer</span> *leftSwipeGesture = [[<span class="built_in">UISwipeGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(leftSwipe:)];</div><div class="line">        leftSwipeGesture.direction = <span class="built_in">UISwipeGestureRecognizerDirectionLeft</span>;</div><div class="line">        [_imageView addGestureRecognizer:leftSwipeGesture];</div><div class="line">        </div><div class="line">        <span class="built_in">UISwipeGestureRecognizer</span> *rightSwipeGesture = [[<span class="built_in">UISwipeGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(rightSwipe:)];</div><div class="line">        rightSwipeGesture.direction = <span class="built_in">UISwipeGestureRecognizerDirectionRight</span>;</div><div class="line">        [_imageView addGestureRecognizer:rightSwipeGesture];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _imageView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>滑动的实现方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)transitionAnimation:(<span class="built_in">NSInteger</span>)direction&#123;</div><div class="line">    <span class="built_in">CATransition</span> *transition=[[<span class="built_in">CATransition</span> alloc]init];</div><div class="line">    transition.type= kCATransitionPush;<span class="comment">//@"rippleEffect";</span></div><div class="line">    </div><div class="line">    <span class="built_in">BOOL</span> right = <span class="literal">YES</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//设置子类型</span></div><div class="line">    <span class="keyword">if</span> (direction == JCCarouselDirectionLeft) &#123;</div><div class="line">        transition.subtype=kCATransitionFromRight;</div><div class="line">        </div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (direction == JCCarouselDirectionRight) &#123;</div><div class="line">        transition.subtype=kCATransitionFromLeft;</div><div class="line">        right = <span class="literal">NO</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    transition.duration = <span class="number">.25</span>f;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (right) &#123;</div><div class="line">        <span class="keyword">self</span>.curIndex=(_curIndex + <span class="number">1</span>) % <span class="keyword">self</span>.imageUrlArr.count;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">self</span>.curIndex=(_curIndex - <span class="number">1</span> + <span class="keyword">self</span>.imageUrlArr.count) % <span class="keyword">self</span>.imageUrlArr.count;</div><div class="line">    &#125;</div><div class="line">    [<span class="keyword">self</span>.imageView sd_setImageWithURL:<span class="keyword">self</span>.imageUrlArr[<span class="keyword">self</span>.curIndex]];</div><div class="line">    [<span class="keyword">self</span>.imageView.layer addAnimation:transition forKey:<span class="string">@"KCTransitionAnimation"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方法的局限在于不能跟随手势滑动，只要滑动就会立刻切换图片，实用性不大，不过了解下CATransition 这个类还是很有好处的。</p>
+<h1 id="发布到Cocoapod"><a href="#发布到Cocoapod" class="headerlink" title="发布到Cocoapod"></a>发布到Cocoapod</h1><h2 id="1-打tag"><a href="#1-打tag" class="headerlink" title="1.打tag"></a>1.打tag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git tag -a 1.0.0 -m&quot;1.0.0&quot;</div><div class="line">git push --tags</div></pre></td></tr></table></figure>
+<h2 id="2-创建项目的podspec文件"><a href="#2-创建项目的podspec文件" class="headerlink" title="2.创建项目的podspec文件"></a>2.创建项目的podspec文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod spec create JCCarouselView</div></pre></td></tr></table></figure>
+<p>这时会生成JCCarouselView.podspec 文件，这就相当于你的库的描述文件，语法参照<a href="http://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="external">这里</a>填写即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line"></div><div class="line">  s.name         = &quot;JCCarouselView&quot;</div><div class="line">  s.version      = &quot;1.0.4&quot;</div><div class="line">  s.summary      = &quot;两个UIImageView实现的轮播banner&quot;</div><div class="line"></div><div class="line">  s.homepage     = &quot;https://github.com/JiachengZheng/JCCarouselView&quot;</div><div class="line"></div><div class="line">  s.license      = &#123; :type =&gt; &quot;MIT&quot;, :file =&gt; &quot;FILE_LICENSE&quot; &#125;</div><div class="line">  s.author       = &#123; &quot;zhengjiacheng&quot; =&gt; &quot;jiachengzheng@163.com&quot; &#125;</div><div class="line">  s.platform     = :ios, &quot;7.0&quot;</div><div class="line">  s.ios.deployment_target = &quot;7.0&quot;</div><div class="line">  s.source       = &#123; :git =&gt; &apos;https://github.com/JiachengZheng/JCCarouselView.git&apos;, :tag =&gt; s.version &#125;</div><div class="line">  s.source_files  = &apos;JCCarouselView/*.&#123;h,m&#125;&apos;</div><div class="line"></div><div class="line">  # s.resource  = &quot;icon.png&quot;</div><div class="line">  # s.resources = &quot;Resources/*.png&quot;</div><div class="line">  s.public_header_files = &apos;JCCarouselView/*.h&apos;</div><div class="line">  s.requires_arc = true</div><div class="line"></div><div class="line">  # s.xcconfig = &#123; &quot;HEADER_SEARCH_PATHS&quot; =&gt; &quot;$(SDKROOT)/usr/include/libxml2&quot; &#125;</div><div class="line">  s.dependency &apos;SDWebImage&apos;</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+<h2 id="3-验证podspec文件"><a href="#3-验证podspec文件" class="headerlink" title="3.验证podspec文件"></a>3.验证podspec文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod spec lint JCCarouselView.podspec</div></pre></td></tr></table></figure>
+<p>不知道为什么总会提示报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Updating spec repo `master`</div><div class="line">Validating podspec</div><div class="line"> -&gt; JCCarouselView (1.0.2)</div><div class="line">    - ERROR | [iOS] xcodebuild: Returned an unsuccessful exit code. You can use `--verbose` for more information.</div><div class="line">    - ERROR | xcodebuild:  /Users/zhengjiacheng/Library/Developer/Xcode/DerivedData/App-dvilxxenwfwalycxbchznfaznvzq/Build/Products/Release-iphonesimulator/JCCarouselView/JCCarouselView.framework/Headers/JCCarouselView.h:10:9: error: include of non-modular header inside framework module &apos;JCCarouselView.JCCarouselView&apos; [-Werror,-Wnon-modular-include-in-framework-module]</div><div class="line">    - NOTE  | xcodebuild:  /var/folders/8j/zd9r7fv92wz32qbj6dhk70n80000gn/T/CocoaPods/Lint/App/main.m:3:9: fatal error: could not build module &apos;JCCarouselView&apos;</div><div class="line"></div><div class="line">[!] The spec did not pass validation, due to 2 errors.</div><div class="line">[!] The validator for Swift projects uses Swift 3.0 by default, if you are using a different version of swift you can use a `.swift-version` file to set the version for your Pod. For example to use Swift 2.3, run: </div><div class="line">    `echo &quot;2.3&quot; &gt; .swift-version`.</div></pre></td></tr></table></figure>
+<p>后来改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod spec lint JCCarouselView.podspec --use-libraries</div></pre></td></tr></table></figure>
+<p>就可以了，不太知道原因。。。</p>
+<p>如果出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> -&gt; JCCarouselView (1.0.2)</div><div class="line"></div><div class="line">Analyzed 1 podspec.</div><div class="line"></div><div class="line">JCCarouselView.podspec passed validation.</div></pre></td></tr></table></figure>
+<p>就代表成功了</p>
+<h2 id="4-上传podspec"><a href="#4-上传podspec" class="headerlink" title="4.上传podspec"></a>4.上传podspec</h2><p>首先需要注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod trunk register xxxxxx@gmail.com &apos;MrSong&apos; --description=&apos;MrSong&apos;</div></pre></td></tr></table></figure>
+<p>随后邮箱里会发确认邮件，确认以后就可上传了<br>可通过 <code>pod trunk me</code> 查看自己是否注册成功</p>
+<p>之后就可以上传了，这一步可能会比较慢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod trunk push JCCarouselView.podspec --use-libraries</div></pre></td></tr></table></figure>
+<p>后面还是加上了<code>--use-libraries</code>防止报错。。。</p>
+<p>出现如下代码上传成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">🎉  Congrats</div><div class="line"></div><div class="line">🚀  JCCarouselView (1.0.2) successfully published</div><div class="line">📅  February 6th, 02:16</div><div class="line">🌎  https://cocoapods.org/pods/JCCarouselView</div><div class="line">👍  Tell your friends!</div></pre></td></tr></table></figure>
+<h2 id="5-验证"><a href="#5-验证" class="headerlink" title="5.验证"></a>5.验证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search &apos;JCCarouselView&apos;</div></pre></td></tr></table></figure>
+<p>大功告成！Enjoy!</p>
+<blockquote>
+<p>Demo地址<br><a href="https://github.com/JiachengZheng/JCCarouselView" target="_blank" rel="external">github</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/20/AFNetworking 踩坑/" rel="next" title="AFNetworking 踩坑">
+                <i class="fa fa-chevron-left"></i> AFNetworking 踩坑
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/28/第一个轮子——滑动视图导航控制器/" rel="prev" title="第一个轮子——滑动视图导航控制器">
+                第一个轮子——滑动视图导航控制器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://i1.piimg.com/4851/e4462f56bd8f249b.jpg"
+               alt="郑嘉成" />
+          <p class="site-author-name" itemprop="name">郑嘉成</p>
+          <p class="site-description motion-element" itemprop="description">iOS Developer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#两个UIImageView"><span class="nav-number">1.</span> <span class="nav-text">两个UIImageView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个UIImageView"><span class="nav-number">2.</span> <span class="nav-text">一个UIImageView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布到Cocoapod"><span class="nav-number">3.</span> <span class="nav-text">发布到Cocoapod</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-打tag"><span class="nav-number">3.1.</span> <span class="nav-text">1.打tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建项目的podspec文件"><span class="nav-number">3.2.</span> <span class="nav-text">2.创建项目的podspec文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-验证podspec文件"><span class="nav-number">3.3.</span> <span class="nav-text">3.验证podspec文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-上传podspec"><span class="nav-number">3.4.</span> <span class="nav-text">4.上传podspec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-验证"><span class="nav-number">3.5.</span> <span class="nav-text">5.验证</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郑嘉成</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
