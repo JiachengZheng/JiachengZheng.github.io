@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS开发,踩坑," />
 
 
 
@@ -84,16 +84,21 @@
 
 
 
-<meta name="description" content="关于我QQ：1083841067Email: jiacheng_zheng@163.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="公司项目一直使用的是私有Spec 仓库来管理每个业务模块，每个模块单独为一个Pod。但是最近发现个问题，就是即使方法声明了需要有返回值，但是如果不写return 的话，编译竟然也不会报错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocoapods 修改Pod 编译选项">
+<meta property="og:url" content="http://yoursite.com/2017/03/17/Cocoapods 修改Pod 编译选项/index.html">
 <meta property="og:site_name" content="郑嘉成's Tech Blog">
-<meta property="og:description" content="关于我QQ：1083841067Email: jiacheng_zheng@163.com">
-<meta property="og:updated_time" content="2017-03-03T05:57:13.000Z">
+<meta property="og:description" content="公司项目一直使用的是私有Spec 仓库来管理每个业务模块，每个模块单独为一个Pod。但是最近发现个问题，就是即使方法声明了需要有返回值，但是如果不写return 的话，编译竟然也不会报错">
+<meta property="og:image" content="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.15.04.png">
+<meta property="og:image" content="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.13.44.png">
+<meta property="og:image" content="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.24.39.png">
+<meta property="og:image" content="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.27.40.png">
+<meta property="og:updated_time" content="2017-03-17T08:46:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于我QQ：1083841067Email: jiacheng_zheng@163.com">
+<meta name="twitter:title" content="Cocoapods 修改Pod 编译选项">
+<meta name="twitter:description" content="公司项目一直使用的是私有Spec 仓库来管理每个业务模块，每个模块单独为一个Pod。但是最近发现个问题，就是即使方法声明了需要有返回值，但是如果不写return 的话，编译竟然也不会报错">
+<meta name="twitter:image" content="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.15.04.png">
 
 
 
@@ -114,16 +119,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/17/Cocoapods 修改Pod 编译选项/"/>
 
 
-  <title>
-  
-
-  
-    about | 郑嘉成's Tech Blog
-  
-</title>
+  <title> Cocoapods 修改Pod 编译选项 | 郑嘉成's Tech Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -154,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -277,10 +276,173 @@
 
   <div id="posts" class="posts-expand">
     
-    
-      <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>QQ：1083841067<br>Email: jiacheng_zheng@163.com</p>
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cocoapods 修改Pod 编译选项
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-17T16:19:12+08:00" content="2017-03-17">
+              2017-03-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/Cocoapods/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocoapods</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>公司项目一直使用的是私有Spec 仓库来管理每个业务模块，每个模块单独为一个Pod。但是最近发现个问题，就是即使方法声明了需要有返回值，但是如果不写return 的话，编译竟然也不会报错</p>
+<p><img src="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.15.04.png" alt="屏幕快照"><br><a id="more"></a></p>
+<p>于是查看编译选项</p>
+<p><img src="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.13.44.png" alt="屏幕快照"></p>
+<p>发现target 的<code>Mismatched Return Type</code> 值是Yes,而如果改成Yes(Treat as Error) 之后，则会正常报错。所以我们需要想方法来修改这个编译选项</p>
+<h1 id="Podspec"><a href="#Podspec" class="headerlink" title="Podspec"></a>Podspec</h1><p>.podspec 文件描述了一个库是怎样被添加到工程中的。它支持的功能有：列出源文件、framework、编译选项和某个库所需要的依赖等。所以我们只有修改.podspec 就可以了，查了下<a href="https://guides.cocoapods.org/syntax/podspec.html#pod_target_xcconfig" target="_blank" rel="external">文档</a></p>
+<p><img src="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.24.39.png" alt="屏幕快照"></p>
+<ul>
+<li><p><code>pod_target_xcconfig</code> 表示pod 本身被依赖时，修改的编译选项</p>
+</li>
+<li><p><code>user_target_xcconfig</code> 表示修改依赖pod 的项目的编译选项</p>
+</li>
+</ul>
+<p>用编辑器打开项目文件Pods.xcodeproj，查找该编译选项的Key，也可以在<a href="http://blog.csdn.net/zhangao0086/article/details/6783074" target="_blank" rel="external">这里</a>查看</p>
+<p><img src="http://om541d7f5.bkt.clouddn.com/屏幕快照 2017-03-17 下午3.27.40.png" alt="屏幕快照"></p>
+<p>发现Key 为<code>GCC_WARN_ABOUT_RETURN_TYPE</code>，值为<code>YES_ERROR&#39;</code></p>
+<h1 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h1><p>在.podspec 文件里增加下面这行即可</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spec.pod_target_xcconfig  =   &#123;<span class="string">'GCC_WARN_ABOUT_RETURN_TYPE'</span> =&gt; <span class="string">'YES_ERROR'</span>&#125;</div></pre></td></tr></table></figure>
+<p>参考</p>
+<blockquote>
+<p><a href="https://objccn.io/issue-6-4/" target="_blank" rel="external">深入理解 CocoaPods</a><br><a href="https://guides.cocoapods.org/syntax/podspec.html#user_target_xcconfig" target="_blank" rel="external">Podspec Syntax Reference</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
+          
+            <a href="/tags/踩坑/" rel="tag">#踩坑</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/28/滑动视图导航控制器/" rel="next" title="滑动视图导航控制器">
+                <i class="fa fa-chevron-left"></i> 滑动视图导航控制器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -312,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -392,6 +563,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Podspec"><span class="nav-number">1.</span> <span class="nav-text">Podspec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正解"><span class="nav-number">2.</span> <span class="nav-text">正解</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -488,6 +670,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
